@@ -70,12 +70,11 @@
 ​	服务端推送能把客户端所需要的资源伴随着 index.html 一起发送到客户端，省去了客户端重复请求的步骤。正因为没有发起请求，建立连接等操作，所以静态资源通过服务端推送的方式可以极大地提升速度。具体如下：
 
 #### 普通的客户端请求过程：
-
-![img](http://mmbiz.qpic.cn/mmbiz_png/cmOLumrNib1cfBOtIMQ6JfSibJdd6QkQribkZLpDyHlTbAGkEiazqLfjkTSfMgib2UlC0p3Yw0T3iaaHcvLjL22PZWPg/0?wx_fmt=png)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200327150032247.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1NvbWh1,size_16,color_FFFFFF,t_70)
 
 #### 服务端推送的过程：
 
-![img](http://mmbiz.qpic.cn/mmbiz_png/cmOLumrNib1cfBOtIMQ6JfSibJdd6QkQribq79os9yK2JmEODZqRVBweS7uMP2WWz4Ij6Z1f9TuiaXANOozhwCWljw/0?wx_fmt=png)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200327150048282.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1NvbWh1,size_16,color_FFFFFF,t_70)
 
 ### 八、为什么需要头部压缩？
 
