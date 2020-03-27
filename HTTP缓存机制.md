@@ -84,3 +84,16 @@ If-None-Match： 再次请求服务器时，浏览器的请求报文头部会包
 
 ​	Ctrl+F5 告诉浏览器，你先把你缓存中的这个文件给我删了，然后再去服务器请求个完整的资源文件下来。于是客户端就完成了强行更新的操作。
 
+### 4、如何避免浏览器缓存
+
+无法被浏览器缓存的请求： 
+
+​	HTTP信息头中包含Cache-Control:no-cache，pragma:no-cache，或Cache-Control:max-age=0等告诉浏览器不用缓存的请求 
+
+​	需要根据Cookie，认证信息等决定输入内容的动态请求是不能被缓存的 
+
+​	经过HTTPS安全加密的请求（有人也经过测试发现，ie其实在头部加入Cache-Control：max-age信息，firefox在头部加入Cache-Control:Public之后，能够对HTTPS的资源进行缓存，参考《HTTPS的七个误解》） 
+
+​	POST请求无法被缓存 
+
+​	HTTP响应头中不包含Last-Modified/Etag，也不包含Cache-Control/Expires的请求无法被缓存 
