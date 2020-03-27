@@ -53,6 +53,32 @@
 - 状态位：SYN发起一个连接，ACK回复，RST重新连接，FIN结束连接等。TCP是面向连接的，因而双方要维护连接的状态，这些带状态位的包的发送，会引起双方的状态变更。【连接维护，有始有终】
 - 窗口大小：TCP要做流量控制，通信双方各声明一个窗口，标识自己当前能够的处理能力。【流量控制，把握分寸，拥塞控制，知进知退】
 
+##### TCP/IP 如何保证可靠性，数据包有哪些数据组成
+  使用序号，对收到的TCP报文段进行排序以及检测重复的数据；使用校验和来检测报文段的错误；使用确认和计时器来检测和纠正丢包或延时。TCP头部，总长度20字节：
+``` c++
+typedef struct _tcp_hdr 
+			{ 
+				unsigned short src_port; //源端口号 
+				unsigned short dst_port; //目的端口号 
+				unsigned int seq_no; //序列号 
+				unsigned int ack_no; //确认号 
+				#if LITTLE_ENDIAN 
+				unsigned char reserved_1:4; //保留6位中的4位首部长度 
+				unsigned char thl:4; //tcp头部长度 
+				unsigned char flag:6; //6位标志 
+				unsigned char reseverd_2:2; //保留6位中的2位 
+				#else 
+				unsigned char thl:4; //tcp头部长度 
+				unsigned char reserved_1:4; //保留6位中的4位首部长度 
+				unsigned char reseverd_2:2; //保留6位中的2位 
+				unsigned char flag:6; //6位标志 
+				#endif 
+				unsigned short wnd_size; //16位窗口大小 
+				unsigned short chk_sum; //16位TCP检验和 
+				unsigned short urgt_p; //16为紧急指针 
+			}tcp_hdr;
+```
+
 ​	TCP 是靠谱的协议，但是这不能说明它面临的网络环境好。从 IP 层面来讲，如果网络状况的确那么差，是没有任何可靠性保证的，而作为 IP 的上一层 TCP 也无能为力，唯一能做的就是更加努力，不断重传，通过各种算法保证。也就是说，对于 TCP 来讲，IP 层你丢不丢包，我管不着，但是我在我的层面上，会努力保证可靠性。
 
 #### 2、传输的可靠性
